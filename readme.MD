@@ -15,7 +15,7 @@ This Project explores a given map using Dijkstra's or A* algorithm.
 
 ###### Results
 
-- Fig showing the map exploration using A* and Dijkstra's algorithm.
+- Fig showing the map exploration using Dijkstra's and A* algorithm.
 
 <p align="center">
 <img src="result/dijikstra.gif" width="400" height="270" border="10">
