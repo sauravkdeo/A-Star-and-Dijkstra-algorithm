@@ -1,6 +1,6 @@
 ﻿
 # C++ Dijkstra's and A* algorithm
-[![Build Status](https://travis-ci.org/sauravkdeo/Steering-Control-Module.svg?branch=master)](https://travis-ci.org/sauravkdeo/Steering-Control-Module)
+[![Build Status](https://travis-ci.org/sauravkdeo/A-Star-and-Dijkstra-algorithm.svg?branch=master)](https://travis-ci.org/sauravkdeo/A-Star-and-Dijkstra-algorithm)
 [![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/Steering-Control-Module/badge.svg?branch=master)](https://coveralls.io/github/sauravkdeo/Steering-Control-Module?branch=master)
 ---
 
