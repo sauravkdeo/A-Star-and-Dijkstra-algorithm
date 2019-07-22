@@ -8,15 +8,6 @@
 
 C++ project to explore node using Dijkstra's or A* algorithm 
 
-<p align="center">
-<a target="_blank"><img src="images/Tricycle.png"
-alt="NMPC" width="480" height="260" border="10" />
-</a>
-</p>
-
-
-## Purpose
-
 ###### Main Features
 
 This Project explores a given map using Dijkstra's or A* algorithm.
@@ -31,7 +22,7 @@ This Project explores a given map using Dijkstra's or A* algorithm.
 - Fig showing the map exploration using A* and Dijkstra's algorithm.
 
 <p align="center">
-<a target="_blank"><img src="result/Dijkstra.gif"
+<a target="_blank"><img src="result/dijikstra.gif"
 alt="NMPC" width="800" height="400" border="10" />
 
 <a target="_blank"><img src="result/a_star.gif"
