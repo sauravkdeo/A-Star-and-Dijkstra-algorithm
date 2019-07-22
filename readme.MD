@@ -1,4 +1,3 @@
-﻿
 # C++ Dijkstra's and A* algorithm
 
 ---
