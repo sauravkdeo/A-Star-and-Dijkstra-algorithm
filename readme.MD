@@ -2,7 +2,7 @@
 
 ## Overview
 
-C++ project to explore node using `Dijkstra's` or `A*` algorithm 
+C++ project to explore nodes using `Dijkstra's` or `A*` algorithm 
 
 ## Main Features
 
