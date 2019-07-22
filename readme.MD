@@ -13,10 +13,6 @@ C++ project to explore node using Dijkstra's or A* algorithm
 This Project explores a given map using Dijkstra's or A* algorithm.
 
 
-###### Safety
-
-
-
 ###### Results
 
 - Fig showing the map exploration using A* and Dijkstra's algorithm.
@@ -72,15 +68,6 @@ cd build
 cmake ..
 make
 Run program: ./app/Project2
-```
-
-## Generate doxygen documentation
-
-
-```
-cd <path to repository>
-cd docs
-doxygen steer_doxy.Doxyfile
 ```
 
 ## Building for code coverage
