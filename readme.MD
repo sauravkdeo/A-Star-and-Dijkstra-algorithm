@@ -22,13 +22,8 @@ This Project explores a given map using Dijkstra's or A* algorithm.
 - Fig showing the map exploration using A* and Dijkstra's algorithm.
 
 <p align="center">
-<a target="_blank"><img src="result/dijikstra.gif"
-alt="NMPC" width="800" height="400" border="10" />
-
-<a target="_blank"><img src="result/a_star.gif"
-alt="NMPC" width="800" height="400" border="10" />
-
-</a>
+<img src="result/dijikstra.gif" width="400" height="270" border="10">
+<img src="result/a_star.gif" width="400" height="270" border="10">
 </p>
 
 ## License
