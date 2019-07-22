@@ -10,18 +10,6 @@ find_package( OpenCV REQUIRED )
 # We probably don't want this to run on every build.
 option(COVERAGE "Generate Coverage Data" OFF)
 
-if (COVERAGE)
-    include(CodeCoverage)
-    set(LCOV_REMOVE_EXTRA "'vendor/*'")
-    setup_target_for_coverage(code_coverage test/cpp-test coverage)
-    set(COVERAGE_SRCS app/main.cpp app/node.cpp app/map.cpp app/coord.cpp include/node.h include/map.h include/coord.h)
-
-    SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-    SET(CMAKE_C_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-    SET(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
-else()
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic -g")
-endif()
 
 include(CMakeToolsHelpers OPTIONAL)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
