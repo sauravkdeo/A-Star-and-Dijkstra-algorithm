@@ -4,12 +4,12 @@
 
 C++ project to explore node using `Dijkstra's` or `A*` algorithm 
 
-###### Main Features
+## Main Features
 
 This Project explores a given map using `Dijkstra's` or `A*` algorithm.
 
 
-###### Results
+## Results
 
 - Fig showing the map exploration using `Dijkstra's` and `A*` algorithm.
 
