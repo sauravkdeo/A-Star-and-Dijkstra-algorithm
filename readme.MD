@@ -1,34 +1,25 @@
 ﻿
 # C++ Dijkstra's and A* algorithm
-[![Build Status](https://travis-ci.org/sauravkdeo/Steering-Control-Module.svg?branch=master)](https://travis-ci.org/sauravkdeo/Steering-Control-Module)
+[![Build Status](https://travis-ci.org/sauravkdeo/A-Star-and-Dijkstra-algorithm.svg?branch=master)](https://travis-ci.org/sauravkdeo/A-Star-and-Dijkstra-algorithm)
 [![Coverage Status](https://coveralls.io/repos/github/sauravkdeo/Steering-Control-Module/badge.svg?branch=master)](https://coveralls.io/github/sauravkdeo/Steering-Control-Module?branch=master)
 ---
 
 ## Overview
 
-C++ project to explore node using Dijkstra's or A* algorithm 
+C++ project to explore node using `Dijkstra's` or `A*` algorithm 
 
 ###### Main Features
 
-This Project explores a given map using Dijkstra's or A* algorithm.
-
-
-###### Safety
-
+This Project explores a given map using `Dijkstra's` or `A*` algorithm.
 
 
 ###### Results
 
-- Fig showing the map exploration using A* and Dijkstra's algorithm.
+- Fig showing the map exploration using `Dijkstra's` and `A*` algorithm.
 
 <p align="center">
-<a target="_blank"><img src="result/dijikstra.gif"
-alt="NMPC" width="800" height="400" border="10" />
-
-<a target="_blank"><img src="result/a_star.gif"
-alt="NMPC" width="800" height="400" border="10" />
-
-</a>
+<img src="result/dijikstra.gif" width="400" height="270" border="10">
+<img src="result/a_star.gif" width="400" height="270" border="10">
 </p>
 
 ## License
@@ -77,15 +68,6 @@ cd build
 cmake ..
 make
 Run program: ./app/Project2
-```
-
-## Generate doxygen documentation
-
-
-```
-cd <path to repository>
-cd docs
-doxygen steer_doxy.Doxyfile
 ```
 
 ## Building for code coverage
