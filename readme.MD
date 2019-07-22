@@ -1,7 +1,5 @@
 # C++ Dijkstra's and A* algorithm
 
----
-
 ## Overview
 
 C++ project to explore node using `Dijkstra's` or `A*` algorithm 
