@@ -39,6 +39,7 @@
 #include <../include/node.h>
 #include <map>
 #include <iostream>
+#include <memory>
 #include <algorithm>
 #include <queue>
 #include <vector>
@@ -51,16 +52,16 @@ using std::priority_queue;
 
 
 
-double Node::calculateastarcosttogo(Node* node, Coord goal) {
+double Node::calculateastarcosttogo(std::shared_ptr<Node> node, Coord goal) {
   Coord coordinate = node->position;
   return (sqrt(pow((coordinate.get_x()-goal.get_x()), 2) +
                pow((coordinate.get_y()-goal.get_y()), 2)));
 }
 
 
-Node* Node::newnode(Coord coordinate, Node* parent, double stepCost,
-              std::map<int, std::map<int, Node*> >* ngridmap, Map* arraymap,
-              priority_queue<Node*, std::vector<Node*>, comp>* pq) {
+std::shared_ptr<Node> Node::newnode(Coord coordinate, std::shared_ptr<Node> parent, double stepCost,
+              std::map<int, std::map<int, std::shared_ptr<Node>> >* ngridmap, Map* arraymap,
+              priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, comp>* pq) {
   if ((*ngridmap)[coordinate.get_x()][coordinate.get_y()]) {
     if (((*ngridmap)[coordinate.get_x()][coordinate.get_y()]->costtocome) >
     (parent->costtocome+stepCost)) {
@@ -70,7 +71,7 @@ Node* Node::newnode(Coord coordinate, Node* parent, double stepCost,
     }
   }
   if (!(*ngridmap)[coordinate.get_x()][coordinate.get_y()]) {
-    Node* node = new Node;
+    std::shared_ptr<Node> node(new Node);
     node->position = coordinate;
     node->gridmap = arraymap;
     node->parent = parent;
@@ -106,7 +107,7 @@ Node* Node::newnode(Coord coordinate, Node* parent, double stepCost,
 // Function to solve N*N - 1 puzzle algorithm using
 // Branch and Bound. x and y are blank tile coordinates
 // in initial state
-void Node::traceback(Node* trace) {
+void Node::traceback(std::shared_ptr<Node> trace) {
   trace->gridmap->updatemap(trace->position, trace->parent->position, 5);
   if (trace->parent->position.get_x() !=
       trace->gridmap->getstartingCoord().get_x() ||
@@ -120,7 +121,7 @@ bool Node::ispositionsame(int startx, int starty, Coord end) {
   return(startx == end.get_x() && starty == end.get_y());
 }
 
-bool Node::moveup(Node* node) {
+bool Node::moveup(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_y()+i < node->gridmap->getgridmapheight()) {
@@ -136,7 +137,7 @@ bool Node::moveup(Node* node) {
     return false;
   }
 }
-bool Node::moveupright(Node* node) {
+bool Node::moveupright(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_y()+i < node->gridmap->getgridmapheight() &&
@@ -154,7 +155,7 @@ bool Node::moveupright(Node* node) {
   }
 }
 
-bool Node::moveright(Node* node) {
+bool Node::moveright(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_x()+i < node->gridmap->getgridmapwidth()) {
@@ -171,7 +172,7 @@ bool Node::moveright(Node* node) {
   }
 }
 
-bool Node::movedownright(Node* node) {
+bool Node::movedownright(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_x()+i < node->gridmap->getgridmapwidth() &&
@@ -189,7 +190,7 @@ bool Node::movedownright(Node* node) {
   }
 }
 
-bool Node::movedown(Node* node) {
+bool Node::movedown(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_y()-i >= 0) {
@@ -205,7 +206,7 @@ bool Node::movedown(Node* node) {
     return false;
   }
 }
-bool Node::movedownleft(Node* node) {
+bool Node::movedownleft(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_y()-i >= 0 && node->position.get_x()-i >= 0) {
@@ -222,7 +223,7 @@ bool Node::movedownleft(Node* node) {
   }
 }
 
-bool Node::moveleft(Node* node) {
+bool Node::moveleft(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_x()-i >= 0) {
@@ -238,7 +239,7 @@ bool Node::moveleft(Node* node) {
     return false;
   }
 }
-bool Node::moveupleft(Node* node) {
+bool Node::moveupleft(std::shared_ptr<Node> node) {
   int count = 0;
   for (int i = 1; i <= node->gridmap->getresolution(); i++) {
     if (node->position.get_x()-i >= 0 &&
@@ -256,7 +257,7 @@ bool Node::moveupleft(Node* node) {
   }
 }
 
-bool Node::nearvicinity(Node* node) {
+bool Node::nearvicinity(std::shared_ptr<Node> node) {
   int count = 0;
   if (abs(node->gridmap->getendcoord().get_x()-
           node->position.get_x()) < node->gridmap->getresolution()
@@ -287,9 +288,9 @@ bool Node::nearvicinity(Node* node) {
   }
 }
 
-void Node::explorechild(Node* root,  priority_queue<Node*,
-                  std::vector<Node*>, comp>* pq, std::map<int,
-                  std::map<int, Node*> >* ngmap, Map* araymap) {
+void Node::explorechild(std::shared_ptr<Node> root,  priority_queue<std::shared_ptr<Node>,
+                  std::vector<std::shared_ptr<Node>>, comp>* pq, std::map<int,
+                  std::map<int, std::shared_ptr<Node>> >* ngmap, Map* araymap) {
   double stepcost;
   Coord newlocation;
   if (nearvicinity(root)) {
@@ -375,16 +376,16 @@ void Node::explorechild(Node* root,  priority_queue<Node*,
 }
 
 void Node::solve(Coord position, Map* mp) {
-  std::map<int, std::map<int, Node*> > ngm;
-  priority_queue<Node*, std::vector<Node*>, comp> pq;
+  std::map<int, std::map<int, std::shared_ptr<Node>> > ngm;
+  priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, comp> pq;
   // create a root node and calculate its cost
   newnode(position, NULL, 0.0, &ngm, mp, &pq);
 
 
   while (!pq.empty()) {
     // Find a live node with least estimated cost
-    Node* min = pq.top();
-
+    std::shared_ptr<Node> min = pq.top();
+//    cout << min.use_count()<<endl;
     // The found node is deleted from the list of
     // live nodes
     pq.pop();

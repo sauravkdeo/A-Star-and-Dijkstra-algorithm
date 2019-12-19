@@ -40,6 +40,7 @@
 #include <map>
 #include <iostream>
 #include <algorithm>
+#include<memory>
 #include <queue>
 #include <vector>
 
@@ -61,47 +62,47 @@ class Node {
   double costtocome;
   double costtogo;
   struct comp {
-    bool operator()(const Node* lhs, const Node* rhs) const {
+    bool operator()(const std::shared_ptr<Node> lhs, const std::shared_ptr<Node> rhs) const {
       return (lhs->costtocome + lhs->costtogo) >
       (rhs->costtocome + rhs->costtogo);
     }
   };
 
-  Node* parent;
+  std::shared_ptr<Node> parent;
 
-  Node* childup;
-  Node* childdown;
-  Node* childright;
-  Node* childleft;
-  Node* childupleft;
-  Node* childupright;
-  Node* childdownright;
-  Node* childdownleft;
-  //  static priority_queue<Node*, std::vector<Node*>, comp1> pq;
+  std::shared_ptr<Node> childup;
+  std::shared_ptr<Node> childdown;
+  std::shared_ptr<Node> childright;
+  std::shared_ptr<Node> childleft;
+  std::shared_ptr<Node> childupleft;
+  std::shared_ptr<Node> childupright;
+  std::shared_ptr<Node> childdownright;
+  std::shared_ptr<Node> childdownleft;
+  //  static priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, comp1> pq;
 
   Map * gridmap;
 
-  double calculateastarcosttogo(Node*, Coord);
-  Node* newnode(Coord, Node*, double,
-                std::map<int, std::map<int, Node*> >*, Map*,
-                priority_queue<Node*, std::vector<Node*>, Node::comp>*);
-  void traceback(Node*);
+  double calculateastarcosttogo(std::shared_ptr<Node>, Coord);
+  std::shared_ptr<Node> newnode(Coord, std::shared_ptr<Node>, double,
+                std::map<int, std::map<int, std::shared_ptr<Node>> >*, Map*,
+                priority_queue<std::shared_ptr<Node>, std::vector<std::shared_ptr<Node>>, Node::comp>*);
+  void traceback(std::shared_ptr<Node>);
 
   bool ispositionsame(int, int, Coord);
-  bool moveup(Node*);
-  bool moveupright(Node*);
-  bool moveright(Node*);
-  bool movedownright(Node*);
-  bool movedown(Node*);
+  bool moveup(std::shared_ptr<Node>);
+  bool moveupright(std::shared_ptr<Node>);
+  bool moveright(std::shared_ptr<Node>);
+  bool movedownright(std::shared_ptr<Node>);
+  bool movedown(std::shared_ptr<Node>);
 
-  bool movedownleft(Node*);
-  bool moveleft(Node*);
-  bool moveupleft(Node*);
+  bool movedownleft(std::shared_ptr<Node>);
+  bool moveleft(std::shared_ptr<Node>);
+  bool moveupleft(std::shared_ptr<Node>);
 
-  bool nearvicinity(Node*);
-  void explorechild(Node*,  priority_queue<Node*,
-                    std::vector<Node*>, comp>*, std::map<int,
-                    std::map<int, Node*> >*, Map*);
+  bool nearvicinity(std::shared_ptr<Node>);
+  void explorechild(std::shared_ptr<Node>,  priority_queue<std::shared_ptr<Node>,
+                    std::vector<std::shared_ptr<Node>>, comp>*, std::map<int,
+                    std::map<int, std::shared_ptr<Node>> >*, Map*);
 
   void solve(Coord position, Map* mp);
 };
