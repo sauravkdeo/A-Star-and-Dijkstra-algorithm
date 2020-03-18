@@ -24,7 +24,7 @@ before_install:
   - pip install --user cpp-coveralls
 install:
   - sudo apt-get install -y -qq lcov
-  - sudo apt-get install -y -qq libopencv-dev python3-opencv
+  - sudo apt-get install libopencv-dev python3-opencv
 script:
   - export CXX=$COMPILER;
   - mkdir build
